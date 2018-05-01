@@ -5,6 +5,7 @@ import Login from "./Login";
 import Register from "./Register";
 import Search from "./Search";
 import LinkList from "./LinkList";
+import UserList from './Users';
 import { ROUTES } from "./Constants";
 
 const Routes = () => (
@@ -14,6 +15,7 @@ const Routes = () => (
     <Route path={ROUTES.register} component={Register} />
     <Route path={ROUTES.search} component={Search} />
     <Route path={ROUTES.links} component={LinkList} />
+    <Route path={ROUTES.users} component={UserList} />
     <Route component={() => <div>Page Not Found</div>} />
   </Switch>
 );

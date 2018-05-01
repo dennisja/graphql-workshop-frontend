@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { graphql } from 'react-apollo';
 
 export default class Register extends Component {
   state = {
@@ -68,6 +70,10 @@ export default class Register extends Component {
             <input type="submit" value="Register" />
           </div>
         </form>
+
+        <br />
+        <br />
+        <Link to="/">Click to Login</Link>
       </div>
     );
   }

@@ -22,10 +22,11 @@ const Header = () => {
             Register
           </NavLink>{" "}
           |{" "}
-          <NavLink
-            to={ROUTES.createLink}
-            activeClassName="active"
-          >
+          <NavLink to={ROUTES.users} activeClassName="active">
+            Users
+          </NavLink>{" "}
+          |{" "}
+          <NavLink to={ROUTES.createLink} activeClassName="active">
             CreateLink
           </NavLink>{" "}
           |{" "}

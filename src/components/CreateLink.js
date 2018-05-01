@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { graphql } from 'react-apollo';
 
 export default class CreateLink extends Component {
   state = {

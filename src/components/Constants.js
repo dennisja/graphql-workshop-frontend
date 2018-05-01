@@ -3,5 +3,6 @@ export const ROUTES = {
     register: '/register',
     links: '/links',
     createLink: '/add-link',
-    search: '/search'
+    search: '/search',
+    users: '/users'
 }

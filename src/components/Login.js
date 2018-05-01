@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
+import { Mutation } from 'react-apollo'
 
 export default class Login extends Component {
   state = {
@@ -41,6 +43,9 @@ export default class Login extends Component {
           <br />
           <input type="submit" value="Login" />
         </form>
+        <br />
+        <br />
+        <Link to="/register">Click to Register</Link>
       </div>
     );
   }

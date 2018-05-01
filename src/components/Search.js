@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withApollo } from 'react-apollo'
 
 export default class Search extends Component {
   state = {
@@ -7,7 +8,11 @@ export default class Search extends Component {
 
   handleSearch = e => {
     e.preventDefault();
-    console.log(this.state)
+    console.log(this.state);
+  };
+
+  handleInputChange = ({ target: { name, value } }) => {
+    this.setState({ [name]: value });
   };
 
   render() {
@@ -18,9 +23,7 @@ export default class Search extends Component {
           <input
             type="search"
             name="search"
-            onChange={({ target: { name, value } }) =>
-              this.setState({ [name]: value })
-            }
+            onChange={this.handleInputChange}
             placeholder="Search..."
           />
           <input type="submit" value="Search" />

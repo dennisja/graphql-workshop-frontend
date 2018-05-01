@@ -10,4 +10,16 @@ const GET_LINKS_QUERY = gql`
   }
 `;
 
-export { GET_LINKS_QUERY };
+const GET_USERS_QUERY = gql`
+  query getUsers {
+    users {
+      id
+      firstName
+      lastName
+      email
+      username
+    }
+  }
+`;
+
+export { GET_LINKS_QUERY, GET_USERS_QUERY };
