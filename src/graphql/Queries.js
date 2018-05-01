@@ -6,6 +6,12 @@ const GET_LINKS_QUERY = gql`
       id
       url
       title
+      postedBy {
+        id
+        firstName
+        lastName
+        username
+      }
     }
   }
 `;
@@ -20,6 +26,12 @@ const GET_USERS_QUERY = gql`
       username
     }
   }
+`;
+
+const SEARCH_LINKS_QUERY = gql`
+query searchLinks{
+  
+}
 `;
 
 export { GET_LINKS_QUERY, GET_USERS_QUERY };
