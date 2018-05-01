@@ -1,19 +1,27 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { ApolloProvider } from "react-apollo";
+import { BrowserRouter } from "react-router-dom";
+import apolloClient from "./components/ApolloClient";
+import logo from "./logo.svg";
+import "./App.css";
+import Routes from './components/Routes';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <BrowserRouter>
+        <ApolloProvider client={apolloClient}>
+          <div className="App">
+            <header className="App-header">
+              <img src={logo} className="App-logo" alt="logo" />
+              <h1 className="App-title">Welcome to React</h1>
+            </header>
+            <div>
+              <Routes />
+            </div>
+          </div>
+        </ApolloProvider>
+      </BrowserRouter>
     );
   }
 }
