@@ -8,7 +8,7 @@ export default class CreateLink extends Component {
 
   handleCreateLink = e => {
     e.preventDefault();
-    console.log(this.state)
+    console.log(this.state);
   };
 
   handleInputChange = ({ target: { name, value } }) => {
@@ -20,9 +20,28 @@ export default class CreateLink extends Component {
       <div>
         <form onSubmit={this.handleCreateLink}>
           <div>
-            <input type="text" name="title" placeholder="title" />
-            <input type="text" name="url" placeholder="url" />
-            <input type="submit" value="Add Link" />
+            <br />
+            <div>
+              <input
+                type="text"
+                name="title"
+                placeholder="title"
+                onChange={this.handleInputChange}
+              />
+            </div>
+            <br />
+            <div>
+              <input
+                type="text"
+                name="url"
+                placeholder="url"
+                onChange={this.handleInputChange}
+              />
+            </div>
+            <br />
+            <div>
+              <input type="submit" value="Add Link" />
+            </div>
           </div>
         </form>
       </div>

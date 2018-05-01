@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { ApolloProvider } from "react-apollo";
 import { BrowserRouter } from "react-router-dom";
 import apolloClient from "./components/ApolloClient";
-import logo from "./logo.svg";
-import "./App.css";
 import Routes from './components/Routes';
+import Header from "./components/Header";
+import "./App.css";
 
 class App extends Component {
   render() {
@@ -12,10 +12,7 @@ class App extends Component {
       <BrowserRouter>
         <ApolloProvider client={apolloClient}>
           <div className="App">
-            <header className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
-              <h1 className="App-title">Welcome to React</h1>
-            </header>
+            <Header />
             <div>
               <Routes />
             </div>

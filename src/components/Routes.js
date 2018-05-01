@@ -5,14 +5,16 @@ import Login from "./Login";
 import Register from "./Register";
 import Search from "./Search";
 import LinkList from "./LinkList";
+import { ROUTES } from "./Constants";
 
 const Routes = () => (
   <Switch>
-    <Route path="/" exact component={Login} />
-    <Route path="/add-link" component={CreateLink} />
-    <Route path="/register" component={Register} />
-    <Route path="/search" component={Search} />
-    <Route path="/links" component={LinkList} />
+    <Route path={ROUTES.home} exact component={Login} />
+    <Route path={ROUTES.createLink} component={CreateLink} />
+    <Route path={ROUTES.register} component={Register} />
+    <Route path={ROUTES.search} component={Search} />
+    <Route path={ROUTES.links} component={LinkList} />
+    <Route component={() => <div>Page Not Found</div>} />
   </Switch>
 );
 
