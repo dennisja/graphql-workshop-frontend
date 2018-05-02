@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { graphql } from "react-apollo";
 import { CREATE_LINK_MUTATION } from "../graphql/Mutations";
+import { ROUTES } from "./Constants";
 class CreateLink extends Component {
   state = {
     title: "",
@@ -18,6 +19,7 @@ class CreateLink extends Component {
         }
       });
       console.log(response);
+      this.props.history.push(ROUTES.links);
     } catch (error) {
       console.log(error);
     }

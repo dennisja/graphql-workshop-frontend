@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Mutation } from "react-apollo";
 import { LOGIN_USER_MUTATION } from "../graphql/Mutations";
-import { AUTH_TOKEN } from "./Constants";
+import { AUTH_TOKEN, ROUTES } from "./Constants";
 export default class Login extends Component {
   state = {
     username: "",
@@ -23,6 +23,7 @@ export default class Login extends Component {
         });
         const { token } = response.data.login;
         this.saveUserToken(token);
+        this.props.history.push(ROUTES.links);
       } catch (e) {
         console.log(e);
       }
