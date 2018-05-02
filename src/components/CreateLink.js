@@ -1,15 +1,26 @@
 import React, { Component } from "react";
-import { graphql } from 'react-apollo';
-
-export default class CreateLink extends Component {
+import { graphql } from "react-apollo";
+import { CREATE_LINK_MUTATION } from "../graphql/Mutations";
+class CreateLink extends Component {
   state = {
     title: "",
     url: ""
   };
 
-  handleCreateLink = e => {
+  handleCreateLink = async e => {
     e.preventDefault();
-    console.log(this.state);
+    const { title, url } = this.state;
+    try {
+      const response = await this.props.createLink({
+        variables: {
+          url,
+          title
+        }
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   handleInputChange = ({ target: { name, value } }) => {
@@ -49,3 +60,7 @@ export default class CreateLink extends Component {
     );
   }
 }
+
+export default graphql(CREATE_LINK_MUTATION, { name: "createLink" })(
+  CreateLink
+);

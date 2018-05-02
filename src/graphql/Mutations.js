@@ -1,3 +1,5 @@
+import gql from 'graphql-tag';
+
 const REGISTER_USERS_MUTATION = gql`
   mutation RegisterUsers(
     $firstName: String!
@@ -44,3 +46,5 @@ const CREATE_LINK_MUTATION = gql`
     }
   }
 `;
+
+export { CREATE_LINK_MUTATION, LOGIN_USER_MUTATION, REGISTER_USERS_MUTATION };

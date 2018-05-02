@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { ApolloProvider } from "react-apollo";
 import { BrowserRouter } from "react-router-dom";
 import apolloClient from "./components/ApolloClient";
-import Routes from './components/Routes';
+import Routes from "./components/Routes";
 import Header from "./components/Header";
 import "./App.css";
 

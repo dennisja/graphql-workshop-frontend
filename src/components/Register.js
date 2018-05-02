@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { graphql } from 'react-apollo';
+import { graphql } from "react-apollo";
+import { REGISTER_USERS_MUTATION } from "../graphql/Mutations";
+import { ROUTES } from './Constants'
 
-export default class Register extends Component {
+class Register extends Component {
   state = {
     firstname: "",
     lastname: "",
@@ -15,9 +17,37 @@ export default class Register extends Component {
     this.setState({ [name]: value });
   };
 
-  handleRegistration = e => {
+  handleRegistration = async e => {
     e.preventDefault();
-    console.log(this.state);
+    const {
+      firstname: firstName,
+      lastname: lastName,
+      email,
+      password,
+      username
+    } = this.state;
+    try {
+      const response = await this.props.registerUser({
+        variables: {
+          firstName,
+          email,
+          lastName,
+          password,
+          username
+        }
+      });
+      // get created user details
+      const { user } = response.data.createUser;
+      console.log(user)
+      // take user to the login screen
+      this.props.history.push(ROUTES.home)
+    } catch (error) {
+      const { message, graphQLErrors, networkError, extraInfo} = error
+      console.log("Error message", message);
+      console.log("Graphql Errors", graphQLErrors);
+      console.log("Network Errors", networkError);
+      console.log("Extra Info", extraInfo);
+    }
   };
 
   render() {
@@ -36,7 +66,7 @@ export default class Register extends Component {
             <br />
 
             <input
-              type="text"
+              type="email"
               name="email"
               placeholder="email"
               onChange={this.handleInputChange}
@@ -78,3 +108,7 @@ export default class Register extends Component {
     );
   }
 }
+
+export default graphql(REGISTER_USERS_MUTATION, { name: "registerUser" })(
+  Register
+);

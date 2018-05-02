@@ -1,9 +1,16 @@
 import React from "react";
+import { NavLink, withRouter } from "react-router-dom";
+
 import logo from "../logo.png";
-import { NavLink } from "react-router-dom";
 import { ROUTES } from "./Constants";
 
-const Header = () => {
+const Header = props => {
+  const logoutUser = e => {
+    e.preventDefault();
+    localStorage.clear();
+    props.history.push(ROUTES.home);
+  };
+
   return (
     <div>
       <header className="App-header">
@@ -32,6 +39,10 @@ const Header = () => {
           |{" "}
           <NavLink to={ROUTES.search} activeClassName="active">
             Search
+          </NavLink>{" "}
+          |{" "}
+          <NavLink activeClassName="active" exact to="!#" onClick={logoutUser}>
+            Logout
           </NavLink>
         </div>
       </header>
@@ -39,4 +50,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default withRouter(Header);

@@ -29,9 +29,14 @@ const GET_USERS_QUERY = gql`
 `;
 
 const SEARCH_LINKS_QUERY = gql`
-query searchLinks{
-  
+query SearchLinks{
+  # put search query here
+  search{
+    id
+    url
+    title
+  }
 }
 `;
 
-export { GET_LINKS_QUERY, GET_USERS_QUERY };
+export { GET_LINKS_QUERY, GET_USERS_QUERY , SEARCH_LINKS_QUERY};
