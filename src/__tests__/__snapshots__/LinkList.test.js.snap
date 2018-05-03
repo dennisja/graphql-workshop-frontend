@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`User component  renders properly 1`] = `
+exports[`LinkListContainer   renders properly 1`] = `
 <Query
   displayName="Apollo(Component)"
   query={

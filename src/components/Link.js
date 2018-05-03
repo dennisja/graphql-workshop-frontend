@@ -8,10 +8,8 @@ export default class Link extends Component {
       postedBy: { username }
     } = this.props.link;
     return (
-      <div>
-        <div>
-          {title} ({url}) by {username}
-        </div>
+      <div className="users">
+        {title} ({url}) by {username}
       </div>
     );
   }

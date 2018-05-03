@@ -2,11 +2,15 @@ import React from "react";
 import { mount, shallow } from "enzyme";
 import { shallowToJson, toJson } from "enzyme-to-json";
 import { MockedProvider } from "react-apollo/test-utils";
-import LinkList from "../components/LinkList";
+import LinkListContainer, { LinkList } from "../components/LinkList";
 import { GET_LINKS_QUERY } from "../graphql/Queries";
+import { fetchLinksMockData } from "../__mocks__/LinksMocks"; // import mock links
 
-describe("User component", () => {
-  const wrapper = shallow(<LinkList />);
+/**
+ * Tests for the default export (LinkList) graphql container
+ */
+describe("LinkListContainer ", () => {
+  const wrapper = shallow(<LinkListContainer />);
 
   it(" renders properly", () => {
     expect(shallowToJson(wrapper)).toMatchSnapshot();
@@ -16,7 +20,7 @@ describe("User component", () => {
     const request = { query: GET_LINKS_QUERY };
     const wrapper = mount(
       <MockedProvider mocks={[{ request }]}>
-        <LinkList />
+        <LinkListContainer />
       </MockedProvider>
     );
 
@@ -29,10 +33,10 @@ describe("User component", () => {
     const error = "Something went Wrong";
     const wrapper = mount(
       <MockedProvider mocks={[{ request, error }]}>
-        <LinkList />
+        <LinkListContainer />
       </MockedProvider>
     );
-    
+
     await new Promise(resolve => setTimeout(resolve));
     wrapper.update();
     expect(wrapper.find("div").text()).toEqual("Error");
@@ -41,45 +45,52 @@ describe("User component", () => {
   it("passes the corerct props", async () => {
     const request = { query: GET_LINKS_QUERY };
     const result = {
-      data: {
-        links: [
-          {
-            id: "1",
-            url: "https://google.com",
-            title: "Google Search",
-            postedBy: {
-              id: "1",
-              firstName: "dennis",
-              lastName: "jjagwe",
-              username: "dj"
-            }
-          },
-          {
-            id: "2",
-            url: "https://whatsapp.com",
-            title: "Whatsapp Messenger",
-            postedBy: {
-              id: "1",
-              firstName: "dennis",
-              lastName: "jjagwe",
-              username: "dj"
-            }
-          }
-        ]
-      }
+      ...fetchLinksMockData
     };
 
     const wrapper = mount(
-      <MockedProvider mocks={[{ request, result }]} removeTypename>
-        <LinkList />
+      <MockedProvider mocks={[{ request, result }]}>
+        <LinkListContainer />
       </MockedProvider>
     );
     await new Promise(resolve => setTimeout(resolve));
     /**
-     * for some reason the props aren't passed, I'll fix this later in the day.
+     * For some reason the props aren't passed, I'll fix this later in the day.
      */
     wrapper.update();
-    expect(wrapper.find(LinkList)).toHaveLength(1);
-    // console.log(wrapper.find(LinkList).props())
+    expect(wrapper.find(LinkListContainer)).toHaveLength(1);
+    console.log(wrapper.find(LinkListContainer).props());
+  });
+});
+
+/**
+ * Tests for the exported LinkList wrapped component
+ */
+
+describe("LinkList", () => {
+  //  this isn't wrapped by apollo. Its the component apollo Higher Order components pass the props of loading ....
+  // you can choose to test it seperately when given the loadind, error and data props
+  it("displays loding message", () => {
+    const wrapper = mount(<LinkList data={{ loading: true }} />);
+    expect(wrapper.contains(<div className="loading">Loading....</div>)).toBe(
+      true
+    );
+  });
+
+  it("renders the error component ", () => {
+    const wrapper = mount(
+      <LinkList
+        data={{ loading: false, error: { message: "Something Went Wrong" } }}
+      />
+    );
+    expect(wrapper.find(".error")).toHaveLength(1);
+  });
+
+  it("renders the correct number of links", () => {
+    const { links } = fetchLinksMockData.data;
+    const wrapper = mount(
+      <LinkList data={{ loading: false, links, error: null }} />
+    );
+    expect(wrapper.find("Link")).toHaveLength(links.length);
   });
 });
