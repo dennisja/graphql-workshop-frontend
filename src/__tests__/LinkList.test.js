@@ -75,6 +75,9 @@ describe("User component", () => {
       </MockedProvider>
     );
     await new Promise(resolve => setTimeout(resolve));
+    /**
+     * for some reason the props aren't passed, I'll fix this later in the day.
+     */
     wrapper.update();
     expect(wrapper.find(LinkList)).toHaveLength(1);
     // console.log(wrapper.find(LinkList).props())
