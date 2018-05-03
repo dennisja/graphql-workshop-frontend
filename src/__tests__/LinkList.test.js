@@ -48,18 +48,19 @@ describe("LinkListContainer ", () => {
       ...fetchLinksMockData
     };
 
+    const { links } = fetchLinksMockData.data;
+
     const wrapper = mount(
       <MockedProvider mocks={[{ request, result }]}>
         <LinkListContainer />
       </MockedProvider>
     );
     await new Promise(resolve => setTimeout(resolve));
-    /**
-     * For some reason the props aren't passed, I'll fix this later in the day.
-     */
+
     wrapper.update();
-    expect(wrapper.find(LinkListContainer)).toHaveLength(1);
-    console.log(wrapper.find(LinkListContainer).props());
+    // check whether the apollo container passes the right props to the LinkList wrapped component
+    expect(wrapper.find(LinkList)).toHaveLength(1);
+    expect(wrapper.find(LinkList).props().data.links).toEqual(links);
   });
 });
 
@@ -92,5 +93,6 @@ describe("LinkList", () => {
       <LinkList data={{ loading: false, links, error: null }} />
     );
     expect(wrapper.find("Link")).toHaveLength(links.length);
+    expect(wrapper.find(".users")).toHaveLength(links.length);
   });
 });
