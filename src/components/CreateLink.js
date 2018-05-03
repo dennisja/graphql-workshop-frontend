@@ -30,8 +30,12 @@ class CreateLink extends Component {
   };
 
   render() {
+    const { loading, error } = this.props.createLink;
+
     return (
       <div>
+        {loading && <div>Loadind....</div>}
+        {error && <div>Error: {error.message}</div>}
         <form onSubmit={this.handleCreateLink}>
           <div>
             <br />

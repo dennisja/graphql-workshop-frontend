@@ -22,7 +22,7 @@ const Header = props => {
           {!authToken && (
             <Fragment>
               <NavLink to={ROUTES.home} activeClassName="active" exact>
-                Home
+                Login
               </NavLink>{" "}
               |{" "}
               <NavLink to={ROUTES.register} activeClassName="active">
@@ -33,6 +33,10 @@ const Header = props => {
           )}
           <NavLink to={ROUTES.links} activeClassName="active" exact>
             Links
+          </NavLink>{" "}
+          |{" "}
+          <NavLink to={ROUTES.users} activeClassName="active" exact>
+            Users
           </NavLink>{" "}
           |{" "}
           <NavLink to={ROUTES.search} activeClassName="active">
