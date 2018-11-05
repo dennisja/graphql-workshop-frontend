@@ -1,12 +1,11 @@
-import React, { Component } from "react";
-import { withApollo } from 'react-apollo'
-
-export default class Search extends Component {
+import React, { Component } from 'react';
+import { withApollo } from 'react-apollo';
+class Search extends Component {
   state = {
-    search: ""
+    search: '',
   };
 
-  handleSearch = e => {
+  handleSearch = (e) => {
     e.preventDefault();
     console.log(this.state);
   };
@@ -32,3 +31,5 @@ export default class Search extends Component {
     );
   }
 }
+
+export default withApollo(Search);

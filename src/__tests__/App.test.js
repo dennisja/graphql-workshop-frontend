@@ -1,9 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { shallow } from "enzyme";
-import { shallowToJson } from "enzyme-to-json";
 import { MockedProvider } from "react-apollo/test-utils";
-import { StaticRouter, MemoryRouter } from "react-router-dom";
+import { StaticRouter, } from "react-router-dom";
 
 import App from "../App";
 
@@ -19,14 +17,5 @@ describe("App component", () => {
       div
     );
     ReactDOM.unmountComponentAtNode(div);
-  });
-
-  it("renders properly", () => {
-    const wrapper = shallow(
-      <MockedProvider>
-        <App />
-      </MockedProvider>
-    );
-    expect(shallowToJson(wrapper)).toMatchSnapshot();
   });
 });
