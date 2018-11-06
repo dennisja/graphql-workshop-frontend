@@ -23,5 +23,24 @@
   },
   "devDependencies": {
     "react-testing-library": "^5.2.3"
+  },
+  "jest":{
+    "collectCoverageFrom":[
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/dist/**",
+      "!**/vendor/**",
+      "!**/src/index.js",
+      "!**/*.eslintrc.js",
+      "!**/coverage/**",
+      "!**/config/**",
+      "!**/__mocks__/**",
+      "!**/__tests__/**",
+      "!**/setupTests.js",
+      "!**/src/index.js",
+      "!**/src/components/ApolloClient.js",
+      "!**/build/**",
+      "!**/src/registerServiceWorker.js"
+    ]
   }
 }
