@@ -29,7 +29,7 @@ export const Users = ({ loading, error, data }) => {
 
   if (error) return <div>Error: {error.message}</div>;
 
-  if (data.users.length === 0) return <div>No registered users </div>;
+  if (data.users.length === 0) return <div>No registered users</div>;
 
   return data.users.map(user => <User key={user.id} user={user} />);
 };
