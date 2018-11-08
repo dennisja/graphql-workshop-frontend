@@ -1,6 +1,6 @@
 # Welcome to YoLinks
 
-[![CircleCI](https://circleci.com/gh/dennisja/graphql-workshop-frontend.svg?style=svg)](https://circleci.com/gh/dennisja/graphql-workshop-frontend) [![Coverage Status](https://coveralls.io/repos/github/dennisja/graphql-workshop-frontend/badge.svg)](https://coveralls.io/github/dennisja/graphql-workshop-frontend)
+[![CircleCI](https://circleci.com/gh/dennisja/graphql-workshop-frontend.svg?style=svg)](https://circleci.com/gh/dennisja/graphql-workshop-frontend) [![Coverage Status](https://coveralls.io/repos/github/dennisja/graphql-workshop-frontend/badge.svg?branch=master)](https://coveralls.io/github/dennisja/graphql-workshop-frontend?branch=master)
 
 An app made(not designed) to demonstrate graphql testing.
 
