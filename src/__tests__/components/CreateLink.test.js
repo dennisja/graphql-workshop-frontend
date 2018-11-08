@@ -19,7 +19,7 @@ describe('<CreateLink />', () => {
       variables: createLinkVariables,
     };
     const push = jest.fn();
-
+    const history  = {push}
     const { getByPlaceholderText, getByValue } = render(
       <MockedProvider mocks={[{ request, result }]}>
         <CreateLink history={{ push }} />
@@ -36,11 +36,11 @@ describe('<CreateLink />', () => {
     fireEvent.change(urlInput, {
       target: { name: 'url', value: createLinkVariables.url },
     });
-
     addLinkButton.click();
 
     await wait();
-    expect(push).toHaveBeenCalled();
+
+    expect(push).toBeCalled();
     expect(push).toHaveBeenCalledWith(ROUTES.links);
   });
 

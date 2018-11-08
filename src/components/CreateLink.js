@@ -20,7 +20,9 @@ class CreateLink extends Component {
           title,
         },
       });
-      this.props.history.push(ROUTES.links);
+      console.log(response)
+      console.log(this.props)
+      this.props.history && this.props.history.push(ROUTES.links);
     } catch (error) {
       // do something use ful with the error
     }
