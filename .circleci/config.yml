@@ -1,0 +1,35 @@
+version: 2
+jobs:
+  build:
+    docker:
+      # Node versions used
+      - image: circleci/node:8.10
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # Fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run:
+          name: Installing Packages
+          command: yarn
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run:
+          name: Running Tests with Coverage
+          command: yarn test-ci
+
+      - run:
+          name: Reporting Tests to Coveralls
+          command: cat ./coverage/lcov.info | yarn coveralls
