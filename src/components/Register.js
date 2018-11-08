@@ -1,30 +1,30 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { graphql } from "react-apollo";
-import { REGISTER_USERS_MUTATION } from "../graphql/Mutations";
-import { ROUTES } from './Constants'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { graphql, Mutation } from 'react-apollo';
+import { REGISTER_USERS_MUTATION } from '../graphql/Mutations';
+import { ROUTES } from './Constants';
 
-class Register extends Component {
+class RegisterForm extends Component {
   state = {
-    firstname: "",
-    lastname: "",
-    email: "",
-    password: "",
-    username: ""
+    firstname: '',
+    lastname: '',
+    email: '',
+    password: '',
+    username: '',
   };
 
   handleInputChange = ({ target: { name, value } }) => {
     this.setState({ [name]: value });
   };
 
-  handleRegistration = async e => {
+  handleRegistration = async (e) => {
     e.preventDefault();
     const {
       firstname: firstName,
       lastname: lastName,
       email,
       password,
-      username
+      username,
     } = this.state;
     try {
       const response = await this.props.registerUser({
@@ -33,20 +33,18 @@ class Register extends Component {
           email,
           lastName,
           password,
-          username
-        }
+          username,
+        },
       });
       // get created user details
       const { user } = response.data.createUser;
-      console.log(user)
+      console.log(user);
       // take user to the login screen
-      this.props.history.push(ROUTES.home)
+      this.props.history.push(ROUTES.home);
     } catch (error) {
-      const { message, graphQLErrors, networkError, extraInfo} = error
-      console.log("Error message", message);
-      console.log("Graphql Errors", graphQLErrors);
-      console.log("Network Errors", networkError);
-      console.log("Extra Info", extraInfo);
+      const { message } = error;
+      // do sth useful with the error please
+      console.log('Error message', message);
     }
   };
 
@@ -109,6 +107,12 @@ class Register extends Component {
   }
 }
 
-export default graphql(REGISTER_USERS_MUTATION, { name: "registerUser" })(
-  Register
+const RegisterUser = (props) => (
+  <Mutation mutation={REGISTER_USERS_MUTATION}>
+    {(mutate, mutationProps) => (
+      <RegisterForm registerUser={mutate} {...props} {...mutationProps} />
+    )}
+  </Mutation>
 );
+
+export default RegisterUser;

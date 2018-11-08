@@ -1,25 +1,30 @@
-import React, { Component } from "react";
-import { graphql } from "react-apollo";
-import { CREATE_LINK_MUTATION } from "../graphql/Mutations";
+import React, { Component } from 'react';
+import { Mutation } from 'react-apollo';
+import { CREATE_LINK_MUTATION } from '../graphql/Mutations';
+import { ROUTES } from './Constants';
 class CreateLink extends Component {
   state = {
-    title: "",
-    url: ""
+    title: '',
+    url: '',
+    loading: false,
+    error: null,
   };
 
-  handleCreateLink = async e => {
+  handleCreateLink = async (e) => {
     e.preventDefault();
     const { title, url } = this.state;
     try {
       const response = await this.props.createLink({
         variables: {
           url,
-          title
-        }
+          title,
+        },
       });
-      console.log(response);
+      console.log(response)
+      console.log(this.props)
+      this.props.history && this.props.history.push(ROUTES.links);
     } catch (error) {
-      console.log(error);
+      // do something use ful with the error
     }
   };
 
@@ -28,8 +33,11 @@ class CreateLink extends Component {
   };
 
   render() {
+    const { loading, error } = this.props;
     return (
       <div>
+        {loading && <div>Loading....</div>}
+        {error && <div>Error: {error.message}</div>}
         <form onSubmit={this.handleCreateLink}>
           <div>
             <br />
@@ -61,6 +69,10 @@ class CreateLink extends Component {
   }
 }
 
-export default graphql(CREATE_LINK_MUTATION, { name: "createLink" })(
-  CreateLink
+export default (props) => (
+  <Mutation mutation={CREATE_LINK_MUTATION}>
+    {(mutate, { loading, error }) => (
+      <CreateLink createLink={mutate} loading={loading} error={error} {...props}/>
+    )}
+  </Mutation>
 );
