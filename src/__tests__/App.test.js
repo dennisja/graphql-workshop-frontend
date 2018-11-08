@@ -18,4 +18,12 @@ describe("App component", () => {
     );
     ReactDOM.unmountComponentAtNode(div);
   });
+
+  it('should logout successfully', () => {
+    window.localStorage = {
+      getItem: jest.fn((mockArgument)=>"MockToken")
+    }
+
+  })
+  
 });

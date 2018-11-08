@@ -7,7 +7,7 @@ class Search extends Component {
 
   handleSearch = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    // TODO: do search logic here 
   };
 
   handleInputChange = ({ target: { name, value } }) => {

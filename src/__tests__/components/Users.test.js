@@ -5,10 +5,7 @@ import { cleanup, render } from 'react-testing-library';
 import UsersList from '../../components/Users';
 import { mockUsers } from '../../__mocks__/UserMocks';
 import { GET_USERS_QUERY } from '../../graphql/Queries';
-
-const wait = async (timeToWait = 0) => {
-  await new Promise((resolve) => setTimeout(resolve, timeToWait));
-};
+import { wait } from '../../test-utils';
 describe('<UserList />', () => {
   afterEach(cleanup);
 

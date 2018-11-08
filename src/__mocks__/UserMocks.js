@@ -33,4 +33,46 @@ const mockUsers = {
   },
 };
 
-export { mockUsers }
+const mockCreateUserResponse = {
+  data: {
+    createUser: {
+      user: {
+        id: 29,
+        username: 'djx',
+      },
+    },
+  },
+};
+
+/**
+ * Note: Order of these variables should be similar to the order in the implementation
+ * Otherwise Apollo will throw an error
+ */
+const mockUserVariables = {
+  firstName: 'dy',
+  email: 'dydx@zmail.com',
+  lastName: 'dx',
+  password: 'password',
+  username: 'djx',
+};
+
+const mockLoginResponse = {
+  data: {
+    login: {
+      token: 'mockToken',
+    },
+  },
+};
+
+const mockLoginVariables = {
+  username: 'dj',
+  password: 'password',
+};
+
+export {
+  mockUsers,
+  mockCreateUserResponse,
+  mockUserVariables,
+  mockLoginResponse,
+  mockLoginVariables,
+};

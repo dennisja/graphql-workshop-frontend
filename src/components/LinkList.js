@@ -8,7 +8,7 @@ export const LinkList = props => {
 
   if (loading) return <div className="loading">Loading....</div>;
 
-  if (error) return <div className="error">Error</div>;
+  if (error) return <div className="error">Error: {error.message}</div>;
 
   return <div>{links.map(link => <Link key={link.id} link={link} />)}</div>;
 };
