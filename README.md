@@ -1,5 +1,7 @@
 # Welcome to YoLinks
 
+[![CircleCI](https://circleci.com/gh/dennisja/graphql-workshop-frontend.svg?style=svg)](https://circleci.com/gh/dennisja/graphql-workshop-frontend) [![CircleCI](https://circleci.com/gh/dennisja/graphql-workshop-frontend.svg?style=svg)](https://circleci.com/gh/dennisja/graphql-workshop-frontend)
+
 An app made(not designed) to demonstrate graphql testing.
 
 # Installation
