@@ -23,10 +23,11 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "coveralls": "^3.0.2",
     "react-testing-library": "^5.2.3"
   },
-  "jest":{
-    "collectCoverageFrom":[
+  "jest": {
+    "collectCoverageFrom": [
       "**/*.{js,jsx}",
       "!**/node_modules/**",
       "!**/dist/**",
